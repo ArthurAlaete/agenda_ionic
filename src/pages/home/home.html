@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list lines="full">
+    <ion-item *ngFor="let contato of contatos" >
+      <div class="list-item">
+        <ion-avatar Item-start>
+          <img src="../../assets/imgs/img.png.jpg" alt="teste">
+        </ion-avatar>
+        <h2>Nome: {{contato.nome}}</h2>
+        <p>Email: {{contato.email}}</p>
+        <p>Contato: {{contato.telefone}}</p>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>
