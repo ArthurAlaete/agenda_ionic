@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ServidorProvider } from '../../providers/servidor/servidor';
-import { filter } from 'rxjs/operators'
 
 @Component({
   selector: 'page-home',
@@ -16,9 +15,8 @@ export class HomePage {
   pessoaTodos: Array<{codigo: any, nome: string, telefone: string, email: string}>
 
   constructor(public navCtrl: NavController, public servidor: ServidorProvider) {
-
-  this.getRetornar();
-
+    this.pessoa = [];
+    this.getRetornar();
   }
 
   getRetornar() {
@@ -28,18 +26,8 @@ export class HomePage {
           
           this.contatos = data;
 
-          for(let i = 0; i < data.lenght; i++) {
-            
-            this.pessoa.push({
-              codigo: data[i]['codigo'],
-              nome: data[i]['nome'],
-              telefone: data[i]['telefone'],
-              email: data[i]['email'],
-            });
-          }
-
+          this.pessoa = data.map(pessoa => ({codigo: pessoa.codigo, nome: pessoa.nome, telefone: pessoa.telefone, email: pessoa.email}))
           this.pessoaTodos = this.pessoa;
-
         }
       )
       err => console.log(err);
@@ -52,6 +40,8 @@ export class HomePage {
       this.pessoa = this.pessoaTodos.filter((contatos) => {
         return (contatos.nome.toLowerCase().indexOf(val.toLowerCase()) > -1)
       })
+    } else {
+      this.pessoa = this.pessoaTodos;
     }
   }
 
