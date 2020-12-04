@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ServidorProvider } from '../../providers/servidor/servidor';
+import { DetalhesContatoPage } from '../detalhes-contato/detalhes-contato';
 
 @Component({
   selector: 'page-home',
@@ -26,11 +27,15 @@ export class HomePage {
           
           this.contatos = data;
 
-          this.pessoa = data.map(pessoa => ({codigo: pessoa.codigo, nome: pessoa.nome, telefone: pessoa.telefone, email: pessoa.email}))
+          this.pessoa = this.contatos.map((pessoa) => ({codigo: pessoa.codigo, nome: pessoa.nome, telefone: pessoa.telefone, email: pessoa.email}))
           this.pessoaTodos = this.pessoa;
         }
       )
       err => console.log(err);
+  }
+
+  detalhe(contato: any) {
+    this.navCtrl.push(DetalhesContatoPage, {detalhes: contato});
   }
 
   getContatos(event: any) {

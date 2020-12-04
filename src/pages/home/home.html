@@ -8,19 +8,17 @@
 </ion-header>
 
 <ion-content padding>
-<ion-searchbar (ionInput)="getContatos($event)" placeholder="Digite um contato...">
-
-</ion-searchbar> 
+<ion-searchbar (ionInput)="getContatos($event)" placeholder="Digite um contato..."></ion-searchbar> 
   
   <ion-list lines="full">
-    <ion-item *ngFor="let contatos of pessoa" >
+    <ion-item *ngFor="let contatos of pessoa" (click)="detalhe(contatos)">
       <div class="list-item">
         <ion-avatar Item-start>
           <img src="../../assets/imgs/img.png.jpg" alt="teste">
         </ion-avatar>
         <h2>Nome: {{contatos.nome}}</h2>
         <p>Email: {{contatos.email}}</p>
-        <p>Contato: {{contatos.telefone}}</p>
+        <p>Tefone: {{contatos.telefone}}</p>
       </div>
     </ion-item>
   </ion-list>
