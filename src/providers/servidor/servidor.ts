@@ -20,6 +20,10 @@ export class ServidorProvider {
 
   }
 
+  urlGet() {
+    return this.url;
+  }
+
   getPegar() {
     return this.http.get(`${this.url}dados.php`).pipe(map(resp => resp));
   }
